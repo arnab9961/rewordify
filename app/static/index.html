@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ReWordify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..800,50&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-top"></div>
+  <div class="ambient ambient-bottom"></div>
+
+  <main class="shell">
+    <header class="hero">
+      <h1>ReWordify</h1>
+      <p class="subtext">A focused writing studio for rewriting, paraphrasing, and AI text detection.</p>
+    </header>
+
+    <nav class="tool-switch" aria-label="Tool selector">
+      <button class="tool-tab is-active" data-tool="rewriter">Rewriter</button>
+      <button class="tool-tab" data-tool="paraphrase">Paraphrase</button>
+      <button class="tool-tab" data-tool="ai-detector">AI Detector</button>
+    </nav>
+
+    <section class="studio">
+      <div class="panel panel-input">
+        <div class="panel-head">
+          <h2>Your Draft</h2>
+          <p>Paste text and pick the tool you want to run.</p>
+        </div>
+
+        <label for="inputText">Input text</label>
+        <textarea id="inputText" placeholder="Paste your paragraph, email, or article excerpt here..."></textarea>
+
+        <div class="controls-grid tool-controls tool-rewriter">
+          <div class="form-group">
+            <label for="tone">Tone</label>
+            <select id="tone">
+              <option value="neutral">Neutral</option>
+              <option value="professional">Professional</option>
+              <option value="friendly">Friendly</option>
+              <option value="academic">Academic</option>
+              <option value="persuasive">Persuasive</option>
+              <option value="casual">Casual</option>
+              <option value="concise">Concise</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="creativity">Creativity</label>
+            <select id="creativity">
+              <option value="low">Low</option>
+              <option value="balanced" selected>Balanced</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="format">Format</label>
+            <select id="format">
+              <option value="paragraph" selected>Paragraph</option>
+              <option value="bullets">Bullets</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="audience">Audience</label>
+            <input id="audience" type="text" placeholder="e.g. hiring manager" maxlength="120" />
+          </div>
+
+          <div class="full-width">
+            <label for="purpose">Purpose</label>
+            <input id="purpose" type="text" placeholder="e.g. make it more persuasive but concise" maxlength="200" />
+          </div>
+        </div>
+
+        <div class="controls-grid tool-controls tool-paraphrase is-hidden">
+          <div class="form-group">
+            <label for="paraphraseMode">Paraphrase mode</label>
+            <select id="paraphraseMode">
+              <option value="standard">Standard</option>
+              <option value="fluency">Fluency</option>
+              <option value="formal">Formal</option>
+              <option value="simple">Simple</option>
+              <option value="creative">Creative</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <label class="check-wrap tool-rewriter">
+            <input id="preserveMeaning" type="checkbox" checked />
+            <span>Preserve original meaning</span>
+          </label>
+          <label class="check-wrap tool-paraphrase is-hidden">
+            <input id="preserveMeaningParaphrase" type="checkbox" checked />
+            <span>Preserve original meaning</span>
+          </label>
+          <button id="rewriteBtn" class="primary-btn">Rewrite Now</button>
+        </div>
+      </div>
+
+      <div class="panel panel-output">
+        <div class="panel-head">
+          <h2 id="resultHeading">Rewritten Result</h2>
+          <p id="resultSubtext">Smartly refined output from your model.</p>
+        </div>
+
+        <div id="status" class="status">Ready.</div>
+        <textarea id="outputText" readonly placeholder="Your result will appear here..."></textarea>
+
+        <section id="aiGraph" class="ai-graph is-hidden" aria-live="polite">
+          <div class="meter-row">
+            <div class="meter-labels">
+              <span>AI</span>
+              <strong id="aiPercent">0%</strong>
+            </div>
+            <div class="meter-track">
+              <div id="aiMeterFill" class="meter-fill"></div>
+            </div>
+          </div>
+          <div class="meter-row">
+            <div class="meter-labels">
+              <span>Human</span>
+              <strong id="humanPercent">100%</strong>
+            </div>
+            <div class="meter-track human-track">
+              <div id="humanMeterFill" class="meter-fill human-fill"></div>
+            </div>
+          </div>
+          <p id="aiVerdict" class="ai-verdict">Awaiting analysis...</p>
+        </section>
+
+        <div class="output-actions">
+          <button id="copyBtn" class="ghost-btn">Copy</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
