@@ -13,6 +13,12 @@ const copyBtn = document.getElementById("copyBtn");
 const statusEl = document.getElementById("status");
 const resultHeading = document.getElementById("resultHeading");
 const resultSubtext = document.getElementById("resultSubtext");
+const heroActions = document.querySelector(".hero-actions");
+const guestActions = document.getElementById("guestActions");
+const profileMenu = document.getElementById("profileMenu");
+const profileTrigger = document.getElementById("profileTrigger");
+const profileTriggerName = document.getElementById("profileTriggerName");
+const menuLogoutBtn = document.getElementById("menuLogoutBtn");
 const toolTabs = document.querySelectorAll(".tool-tab");
 const rewriterControls = document.querySelectorAll(".tool-rewriter");
 const paraphraseControls = document.querySelectorAll(".tool-paraphrase");
@@ -68,6 +74,63 @@ function renderAIGraph(aiScore, humanScore, verdict, summary) {
   aiMeterFill.style.width = `${aiScore}%`;
   humanMeterFill.style.width = `${humanScore}%`;
   aiVerdict.textContent = `${verdict}. ${summary}`;
+}
+
+function escapeHtml(text) {
+  return String(text)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function formatHistoryDate(value) {
+  if (!value) {
+    return "Recent";
+  }
+  const date = new Date(value);
+  return Number.isNaN(date.getTime())
+    ? "Recent"
+    : new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(date);
+}
+
+function renderGuestProfile() {
+  guestActions.classList.remove("is-hidden");
+  profileMenu.classList.add("is-hidden");
+  profileTriggerName.textContent = "Guest";
+}
+
+function renderProfile(profile) {
+  guestActions.classList.add("is-hidden");
+  profileMenu.classList.remove("is-hidden");
+  const username = profile.user?.username || "Member";
+  profileTriggerName.textContent = username;
+}
+
+async function loadProfile() {
+  try {
+    const response = await fetch("/auth/me");
+    if (!response.ok) {
+      renderGuestProfile();
+      return false;
+    }
+
+    const data = await response.json();
+    renderProfile(data);
+    return true;
+  } catch {
+    renderGuestProfile();
+    return false;
+  }
+}
+
+async function logout() {
+  try {
+    await fetch("/auth/logout", { method: "POST" });
+  } finally {
+    window.location.href = "/login";
+  }
 }
 
 async function runTool() {
@@ -132,6 +195,8 @@ async function runTool() {
       outputText.value = `${data.verdict || "Mixed signals"}\n\nAI Score: ${aiScore}%\nHuman Score: ${humanScore}%\n\n${data.summary || ""}`;
       setStatus("AI detection complete.");
     }
+
+    await loadProfile();
   } catch (error) {
     setStatus(error.message || "Something went wrong.", "error");
   } finally {
@@ -154,6 +219,9 @@ function copyOutput() {
 
 rewriteBtn.addEventListener("click", runTool);
 copyBtn.addEventListener("click", copyOutput);
+if (menuLogoutBtn) {
+  menuLogoutBtn.addEventListener("click", logout);
+}
 toolTabs.forEach((tab) => {
   tab.addEventListener("click", () => setTool(tab.dataset.tool));
 });
@@ -168,3 +236,4 @@ inputText.addEventListener("input", () => {
 });
 
 setTool("rewriter");
+loadProfile();

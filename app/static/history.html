@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recent History - ReWordify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..800,50&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/history.css" />
+</head>
+<body class="history-page">
+  <main class="history-shell">
+    <header class="history-topbar">
+      <a class="back-link" href="/">Back</a>
+      <div>
+        <h1>Recent History</h1>
+        <p>Your latest saved rewriting activity.</p>
+      </div>
+      <button id="historyLogoutBtn" class="ghost-btn" type="button">Logout</button>
+    </header>
+
+    <section class="history-panel">
+      <div class="history-panel-head">
+        <div>
+          <div id="historyUserName" class="history-user-name">Guest</div>
+          <div id="historyUserEmail" class="history-user-email">Sign in to view saved history.</div>
+        </div>
+        <div class="history-count-box">
+          <span>Saved</span>
+          <strong id="historyTotal">0</strong>
+        </div>
+      </div>
+
+      <div id="historyPageList" class="history-page-list">
+        <div class="history-empty">No history available yet.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/static/history.js"></script>
+</body>
+</html>

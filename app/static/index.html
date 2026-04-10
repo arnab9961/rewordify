@@ -14,9 +14,27 @@
   <div class="ambient ambient-bottom"></div>
 
   <main class="shell">
-    <header class="hero">
-      <h1>ReWordify</h1>
-      <p class="subtext">A focused writing studio for rewriting, paraphrasing, and AI text detection.</p>
+    <header class="hero hero-row">
+      <div>
+        <h1>ReWordify</h1>
+        <p class="subtext">A focused writing studio for rewriting, paraphrasing, and AI text detection.</p>
+      </div>
+      <div class="hero-actions">
+        <div id="profileMenu" class="profile-menu is-hidden">
+          <button id="profileTrigger" class="profile-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+            <span class="profile-trigger-label">Profile</span>
+            <span id="profileTriggerName" class="profile-trigger-name">Guest</span>
+          </button>
+          <div class="profile-dropdown" role="menu">
+            <a class="profile-menu-link" href="/history">Recent history</a>
+            <button id="menuLogoutBtn" class="profile-menu-link danger" type="button">Logout</button>
+          </div>
+        </div>
+        <div id="guestActions" class="hero-auth-links">
+          <a class="ghost-link" href="/login">Login</a>
+          <a class="primary-link" href="/signup">Sign up</a>
+        </div>
+      </div>
     </header>
 
     <nav class="tool-switch" aria-label="Tool selector">
@@ -103,39 +121,41 @@
         </div>
       </div>
 
-      <div class="panel panel-output">
-        <div class="panel-head">
-          <h2 id="resultHeading">Rewritten Result</h2>
-          <p id="resultSubtext">Smartly refined output from your model.</p>
-        </div>
-
-        <div id="status" class="status">Ready.</div>
-        <textarea id="outputText" readonly placeholder="Your result will appear here..."></textarea>
-
-        <section id="aiGraph" class="ai-graph is-hidden" aria-live="polite">
-          <div class="meter-row">
-            <div class="meter-labels">
-              <span>AI</span>
-              <strong id="aiPercent">0%</strong>
-            </div>
-            <div class="meter-track">
-              <div id="aiMeterFill" class="meter-fill"></div>
-            </div>
+      <div class="studio-right">
+        <div class="panel panel-output">
+          <div class="panel-head">
+            <h2 id="resultHeading">Rewritten Result</h2>
+            <p id="resultSubtext">Smartly refined output from your model.</p>
           </div>
-          <div class="meter-row">
-            <div class="meter-labels">
-              <span>Human</span>
-              <strong id="humanPercent">100%</strong>
-            </div>
-            <div class="meter-track human-track">
-              <div id="humanMeterFill" class="meter-fill human-fill"></div>
-            </div>
-          </div>
-          <p id="aiVerdict" class="ai-verdict">Awaiting analysis...</p>
-        </section>
 
-        <div class="output-actions">
-          <button id="copyBtn" class="ghost-btn">Copy</button>
+          <div id="status" class="status">Ready.</div>
+          <textarea id="outputText" readonly placeholder="Your result will appear here..."></textarea>
+
+          <section id="aiGraph" class="ai-graph is-hidden" aria-live="polite">
+            <div class="meter-row">
+              <div class="meter-labels">
+                <span>AI</span>
+                <strong id="aiPercent">0%</strong>
+              </div>
+              <div class="meter-track">
+                <div id="aiMeterFill" class="meter-fill"></div>
+              </div>
+            </div>
+            <div class="meter-row">
+              <div class="meter-labels">
+                <span>Human</span>
+                <strong id="humanPercent">100%</strong>
+              </div>
+              <div class="meter-track human-track">
+                <div id="humanMeterFill" class="meter-fill human-fill"></div>
+              </div>
+            </div>
+            <p id="aiVerdict" class="ai-verdict">Awaiting analysis...</p>
+          </section>
+
+          <div class="output-actions">
+            <button id="copyBtn" class="ghost-btn">Copy</button>
+          </div>
         </div>
       </div>
     </section>

@@ -4,3 +4,7 @@ pydantic
 python-dotenv
 pydantic-settings
 httpx
+motor
+python-jose[cryptography]
+email-validator
+bcrypt

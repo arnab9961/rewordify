@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up - ReWordify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..800,50&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/auth.css" />
+</head>
+<body class="auth-page" data-mode="signup">
+  <main class="auth-shell">
+    <section class="auth-hero">
+      <div class="auth-topline">
+        <a class="back-link" href="/">Back</a>
+        <a class="auth-brand" href="/">ReWordify</a>
+      </div>
+      <span class="auth-badge">Create account</span>
+      <h1>Join ReWordify and keep your writing history in one place.</h1>
+      <p>Create an account to save your rewrites, paraphrases, and AI detector results into your personal profile.</p>
+      <div class="auth-points">
+        <div class="auth-point"><strong>One profile</strong><span>See all previous actions in the history section of your workspace.</span></div>
+        
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <h2>Sign up</h2>
+      <p>Choose a username, add your email, and create a password.</p>
+      <form id="authForm" class="auth-form">
+        <div class="auth-field">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username" required />
+        </div>
+        <div class="auth-field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required />
+        </div>
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="new-password" required />
+        </div>
+        <div class="auth-field">
+          <label for="confirmPassword">Confirm password</label>
+          <input id="confirmPassword" name="confirmPassword" type="password" autocomplete="new-password" required />
+        </div>
+        <div id="otpFieldWrap" class="auth-field is-hidden">
+          <label for="otp">Email OTP</label>
+          <input id="otp" name="otp" type="text" inputmode="numeric" maxlength="6" placeholder="Enter 6-digit OTP" />
+        </div>
+        <button class="auth-action" type="submit">Create account</button>
+      </form>
+      <div id="authStatus" class="auth-status"></div>
+      <div class="auth-footer">Already have an account? <a href="/login">Login</a></div>
+    </section>
+  </main>
+
+  <script src="/static/auth.js"></script>
+</body>
+</html>

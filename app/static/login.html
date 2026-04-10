@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - ReWordify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,500..800,50&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/auth.css" />
+</head>
+<body class="auth-page" data-mode="login">
+  <main class="auth-shell">
+    <section class="auth-hero">
+      <div class="auth-topline">
+        <a class="back-link" href="/">Back</a>
+        <a class="auth-brand" href="/">ReWordify</a>
+      </div>
+      <span class="auth-badge">Welcome back</span>
+      <h1>Sign in to keep your writing history synced.</h1>
+      <p>Use ReWordify with a saved profile so your rewrites, paraphrases, and AI checks are stored in your private history.</p>
+      <div class="auth-points">
+        <div class="auth-point"><strong>Saved history</strong><span>Your previous tool results appear in the profile section after sign in.</span></div>
+       
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <h2>Login</h2>
+      <p>Enter your username or email and password to continue.</p>
+      <form id="authForm" class="auth-form">
+        <div class="auth-field">
+          <label for="identifier">Username or email</label>
+          <input id="identifier" name="identifier" type="text" autocomplete="username" required />
+        </div>
+        <div class="auth-field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+        </div>
+        <div class="auth-inline-actions">
+          <a class="forgot-link" href="/forgot-password">Forgot password?</a>
+        </div>
+        <button class="auth-action" type="submit">Login</button>
+      </form>
+      <div id="authStatus" class="auth-status"></div>
+      <div class="auth-footer">No account yet? <a href="/signup">Create one</a></div>
+    </section>
+  </main>
+
+  <script src="/static/auth.js"></script>
+</body>
+</html>
